@@ -92,7 +92,6 @@ jobs:
         pwd
         ls -lah
 
-        #mv AppRun squashfs-root/
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
         echo "HERE: $HERE"
