@@ -37,11 +37,11 @@ jobs:
         tar -xvf v1.7.1.tar.gz
         cd syncplay-1.7.1/
 
+        pip install --upgrade pip
+
         pip install -r requirements.txt --upgrade
         pip install -r requirements_gui.txt --upgrade
-
-        #./python3.* -m pip install --upgrade pip
-        pip install --upgrade pip
+        pip install twisted
 
         make DESTDIR=../syncplay/ install
         cd ../
