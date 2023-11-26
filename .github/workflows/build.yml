@@ -39,9 +39,12 @@ jobs:
         pwd
         ls -lah
 
-        wget https://github.com/Syncplay/syncplay/archive/refs/tags/v1.7.1.tar.gz
-        tar -xvf v1.7.1.tar.gz
-        cd syncplay-1.7.1/
+        version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
+        echo "Syncplay version: $version"
+
+        wget https://github.com/Syncplay/syncplay/archive/refs/tags/v${version}.tar.gz
+        tar -xvf v${version}.tar.gz
+        cd syncplay-${version}/
 
         ../pip3* install --upgrade pip
 
@@ -51,12 +54,15 @@ jobs:
 
         make DESTDIR=../syncplay/ install
         cd ../
-        #rm -r syncplay-1.7.1 v1.7.1.tar.gz
+        #rm -r syncplay-${version} v${version}.tar.gz
 
     - name: Make AppImage
       run: |
-        version="1.7.1"
         set -x
+
+        version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
+        echo "Syncplay version: $version"
+
         cd squashfs-root/
         pwd
         ls -lah
@@ -64,7 +70,7 @@ jobs:
         rm -v python* .DirIcon AppRun
         cd opt/python3.12/bin/
 
-        find . | grep ".png"
+        #find . | grep ".png"
         #find . | grep ".svg"
         cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png ./../../../
 
