@@ -60,20 +60,21 @@ jobs:
 
         find . | grep ".png"
         #find . | grep ".svg"
-        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png .
+        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png ./../../../
 
         #find . | grep ".desktop"
-        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop .
+        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop ./../../../
 
+        pwd
+        ls -lah
+        cd ../../../
         cat syncplay.desktop
 
         sed -i "s/Name=Syncplay/Name=Syncplay-$version/" syncplay.desktop
         mv syncplay.desktop Syncplay.desktop
         cat Syncplay.desktop
 
-        pwd
-        ls -lah
-        cd ../../../../
+        cd ../
         pwd
         ls -lah
 
