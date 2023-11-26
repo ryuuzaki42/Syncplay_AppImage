@@ -37,7 +37,6 @@ jobs:
         tar -xvf v1.7.1.tar.gz
         cd syncplay-1.7.1/
 
-        cd syncplay-1.7.1/
         pip install -r requirements.txt --upgrade
         pip install -r requirements_gui.txt --upgrade
 
