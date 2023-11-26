@@ -56,13 +56,14 @@ jobs:
         ls -lah
 
         rm -v python* .DirIcon AppRun
+        cd opt/python3.12/bin/
 
         find . | grep ".png"
         #find . | grep ".svg"
-        cp bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png .
+        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png .
 
         #find . | grep ".desktop"
-        cp bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop .
+        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop .
 
         cat syncplay.desktop
 
