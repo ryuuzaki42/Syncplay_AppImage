@@ -73,8 +73,10 @@ jobs:
 
         pwd
         ls -lah
+        cd ../../../../
+        pwd
+        ls -lah
 
-        cd ../
         mv AppRun squashfs-root/
         mv README.md squashfs-root/
         ls -lah squashfs-root/
