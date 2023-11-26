@@ -2,5 +2,5 @@
 HERE="$(dirname "$(readlink -f "${0}")")"
 echo "HERE: $HERE"
 
-cd "$HERE"/bin/
+cd "$HERE"/opt/python3*/bin/
 ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"
