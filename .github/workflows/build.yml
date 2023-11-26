@@ -129,4 +129,4 @@ jobs:
           verbose: true
           #tags: true
           draft: false
-          default_release_name: "Syncplay: V in AppImage"
+          default_release_name: "Syncplay V in AppImage"
