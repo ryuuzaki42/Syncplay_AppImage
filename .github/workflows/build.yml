@@ -92,7 +92,15 @@ jobs:
         pwd
         ls -lah
 
-        mv AppRun squashfs-root/
+        #mv AppRun squashfs-root/
+        echo '#!/bin/bash
+        HERE="$(dirname "$(readlink -f "${0}")")"
+        echo "HERE: $HERE"
+
+        cd "$HERE"/opt/python3*/bin/
+        ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"'> AppRun
+        chmod +x AppRun
+
         mv README.md squashfs-root/
         ls -lah squashfs-root/
 
