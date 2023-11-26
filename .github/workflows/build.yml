@@ -55,7 +55,8 @@ jobs:
 
         make DESTDIR=../syncplay/ install
         cd ../
-        #rm -r syncplay-${version} v${version}.tar.gz
+
+        rm -r syncplay-${version} v${version}.tar.gz
 
     - name: Make AppImage
       run: |
