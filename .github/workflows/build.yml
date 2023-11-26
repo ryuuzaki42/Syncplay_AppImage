@@ -57,7 +57,7 @@ jobs:
 
         rm -v python* .DirIcon AppRun
 
-        #find . | grep ".png"
+        find . | grep ".png"
         #find . | grep ".svg"
         cp bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png .
 
