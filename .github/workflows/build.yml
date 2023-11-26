@@ -9,9 +9,10 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@master
     - name: Install fuse and libfuse2
       run: sudo apt install fuse libfuse2
 
