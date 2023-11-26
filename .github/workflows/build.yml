@@ -1,0 +1,104 @@
+name: Create new realease
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Install fuse and libfuse2
+      run: sudo apt install fuse libfuse2
+
+    - name: Get appimagetool
+      run: |
+        set -x
+        wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        ls -lah
+
+    - name: Get Pyhton AppImage
+      run: |
+        set -x
+        #wget https://github.com/niess/python-appimage/releases/download/python3.9/python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage
+        #chmod +x python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage
+        #./python3.9.16-cp39-cp39-manylinux_2_24_x86_64.AppImage --appimage-extract
+
+        wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.4-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        fileName=$(ls python3*.AppImage)
+        chmod +x "$fileName"
+        ./"$fileName" --appimage-extract
+        ls -lah
+
+    - name: Install Syncplay and update pip
+      run: |
+        set -x
+        cd squashfs-root/opt/python3*/bin/
+        pwd
+        ls -lah
+
+        wget https://github.com/Syncplay/syncplay/archive/refs/tags/v1.7.1.tar.gz
+        tar -xvf v1.7.1.tar.gz
+        cd syncplay-1.7.1/
+
+        cd syncplay-1.7.1/
+        pip install -r requirements.txt --upgrade
+        pip install -r requirements_gui.txt --upgrade
+
+        #./python3.* -m pip install --upgrade pip
+        pip install --upgrade pip
+
+    - name: Make AppImage
+      run: |
+        version="1.7.1"
+        set -x
+        cd squashfs-root/
+        pwd
+        ls -lah
+
+        rm -v python* .DirIcon AppRun
+
+        #find . | grep ".png"
+        #find . | grep ".svg"
+        cp bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png .
+
+        #find . | grep ".desktop"
+        cp bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop .
+
+        cat syncplay.desktop
+
+        sed -i "s/Name=Syncplay/Name=Syncplay-$version/" syncplay.desktop
+        mv syncplay.desktop Syncplay.desktop
+        cat Syncplay.desktop
+
+        pwd
+        ls -lah
+
+        cd ../
+        mv AppRun squashfs-root/
+        mv README.md squashfs-root/
+        ls -lah squashfs-root/
+
+        ARCH=x86_64 ./appimagetool-x86_64.AppImage squashfs-root/
+        ls -lah
+
+        fileName=$(ls Syncplay*.AppImage)
+        echo "fileName: $fileName"
+        fileNameNew=$(echo "$fileName" | sed 's/.AppImage//')
+        mv "$fileName" "${fileNameNew}-1_JB.AppImage"
+        md5sum "${fileNameNew}-1_JB.AppImage" > "${fileNameNew}-1_JB.AppImage.md5"
+        ls -lah
+
+    # Build - Error: Resource not accessible by integration
+    # Change Settings -> Actions -> General -> Workflow Permissions to allow read and write:
+    # https://github.com/actions/first-interaction/issues/10#issuecomment-1506118886
+
+    # https://github.com/marketplace/actions/upload-to-github-release
+    - uses: xresloader/upload-to-github-release@main
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          file: "Syncplay*.AppImage; Syncplay*.md5"
+          release_id: ${{ steps.create_release.outputs.id }}
+          verbose: true
+          draft: false
