@@ -98,8 +98,8 @@ jobs:
         echo "HERE: $HERE"
 
         cd "$HERE"/opt/python3*/bin/
-        ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"'> AppRun
-        chmod +x AppRun
+        ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"'> squashfs-root/AppRun
+        chmod +x squashfs-root/AppRun
 
         mv README.md squashfs-root/
         ls -lah squashfs-root/
