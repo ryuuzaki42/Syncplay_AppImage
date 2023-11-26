@@ -35,12 +35,13 @@ jobs:
     - name: Install Syncplay and update pip
       run: |
         set -x
-        cd squashfs-root/opt/python3*/bin/
-        pwd
-        ls -lah
 
         version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
         echo "Syncplay version: $version"
+
+        cd squashfs-root/opt/python3*/bin/
+        pwd
+        ls -lah
 
         wget https://github.com/Syncplay/syncplay/archive/refs/tags/v${version}.tar.gz
         tar -xvf v${version}.tar.gz
