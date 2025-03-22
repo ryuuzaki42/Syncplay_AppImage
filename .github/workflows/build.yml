@@ -48,9 +48,9 @@ jobs:
         tar -xvf v${version}.tar.gz
         cd syncplay-${version}/
 
-        ../pip3* install --upgrade pip
+        ../pip3.* install --upgrade pip
 
-        ../pip3* install -r requirements.txt --upgrade
+        ../pip3.* install -r requirements.txt --upgrade
 
         # Change pyside6 to PySide6-Essentials to reduce AppImage size
         sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
