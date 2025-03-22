@@ -26,7 +26,8 @@ jobs:
     - name: Get Pyhton AppImage
       run: |
         set -x
-        wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.3-cp312-cp312-manylinux_2_28_x86_64.AppImage
+        wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.9-cp312-cp312-manylinux_2_28_x86_64.AppImage
+        
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
         ./"$fileName" --appimage-extract
