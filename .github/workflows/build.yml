@@ -117,7 +117,7 @@ jobs:
 
         fileName=$(ls Syncplay*.AppImage)
         echo "fileName: $fileName"
-        md5sum "$fileName" > "${fileNameNew}.md5"
+        md5sum "$fileName" > "${fileName}.md5"
         ls -lah
 
     # Build - Error: Resource not accessible by integration
