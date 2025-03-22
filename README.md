@@ -2,7 +2,7 @@
 # Syncplay_AppImage
 
 ## Repository: https://github.com/ryuuzaki42/Syncplay_AppImage
-    Syncplay: 1.7.3
+    Syncplay: 1.7.4
 
 ---
 NOTICE: Syncplay has discontinued support for AppImage and Snap
