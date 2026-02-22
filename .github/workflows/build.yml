@@ -44,8 +44,7 @@ jobs:
         echo "Syncplay version: $version"
 
         cd squashfs-root/opt/python3*/bin/
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         wget https://github.com/Syncplay/syncplay/archive/refs/tags/v${version}.tar.gz
         tar -xvf v${version}.tar.gz
@@ -56,7 +55,7 @@ jobs:
         ../pip3.* install -r requirements.txt --upgrade
 
         # Change pyside6 to PySide6-Essentials to reduce AppImage size
-        #sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
+        sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
 
         ../pip3.* install -r requirements_gui.txt --upgrade
 
@@ -71,8 +70,7 @@ jobs:
         echo "Syncplay version: $version"
 
         cd squashfs-root/
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         rm -v python* .DirIcon AppRun
         cd opt/python3*/bin/
@@ -84,8 +82,7 @@ jobs:
         #find . | grep ".desktop"
         cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop ./../../../
 
-        pwd
-        ls -lah
+        pwd; ls -lah
         cd ../../../
         cat syncplay.desktop
 
@@ -94,8 +91,7 @@ jobs:
         cat Syncplay.desktop
 
         cd ../
-        pwd
-        ls -lah
+        pwd; ls -lah
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
