@@ -29,8 +29,9 @@ jobs:
     - name: Get Pyhton AppImage
       run: |
         set -x
-        wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.9-cp312-cp312-manylinux_2_28_x86_64.AppImage
-        
+        #wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.9-cp312-cp312-manylinux_2_28_x86_64.AppImage
+        wget https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
+
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
         ./"$fileName" --appimage-extract
@@ -39,7 +40,6 @@ jobs:
     - name: Install Syncplay and update pip
       run: |
         set -x
-
         version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
         echo "Syncplay version: $version"
 
@@ -61,13 +61,11 @@ jobs:
 
         make DESTDIR=../syncplay/ install
         cd ../
-
         rm -r syncplay-${version} v${version}.tar.gz
 
     - name: Make AppImage
       run: |
         set -x
-
         version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
         echo "Syncplay version: $version"
 
