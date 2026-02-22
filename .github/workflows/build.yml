@@ -74,7 +74,7 @@ jobs:
         ls -lah
 
         rm -v python* .DirIcon AppRun
-        cd opt/python3.12/bin/
+        cd opt/python3*/bin/
 
         #find . | grep ".png"
         #find . | grep ".svg"
