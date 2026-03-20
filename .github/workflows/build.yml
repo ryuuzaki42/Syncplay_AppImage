@@ -88,7 +88,7 @@ jobs:
 
         cd ../../../
         pwd; ls -lah
-        cat syncplay.desktop
+        cat Syncplay.desktop
 
         #sed -i "s/Name=Syncplay/Name=Syncplay-$version/" syncplay.desktop
         #mv syncplay.desktop Syncplay.desktop
