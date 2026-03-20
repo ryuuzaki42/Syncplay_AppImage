@@ -76,17 +76,18 @@ jobs:
         cd squashfs-root/
         pwd; ls -lah
 
-        rm -v python* .DirIcon AppRun
-        cd opt/python3*/bin/
+        rm -v python*.png python*.desktop .DirIcon AppRun
+
+        #cd opt/python3*/bin/
 
         #find . | grep ".png"
         #find . | grep ".svg"
-        ln -s syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png ./../../../
+        ln -s opt/python3*/bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png . #./../../../
 
         #find . | grep ".desktop"
-        ln -s syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop ./../../../Syncplay.desktop
+        ln -s opt/python3*/bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop Syncplay.desktop #./../../../Syncplay.desktop
 
-        cd ../../../
+        #cd ../../../
         pwd; ls -lah
         cat Syncplay.desktop
 
