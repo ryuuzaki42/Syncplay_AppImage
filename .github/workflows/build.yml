@@ -26,18 +26,17 @@ jobs:
         echo "version_go_appimage: $version_go_appimage"
         wget -q "https://github.com/probonopd/go-appimage/releases/download/continuous/appimagetool-$version_go_appimage-x86_64.AppImage" -O appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
-        ls -lah
+        pwd; ls -lah
 
     - name: Get Pyhton AppImage
       run: |
         set -x
         #wget https://github.com/niess/python-appimage/releases/download/python3.12/python3.12.9-cp312-cp312-manylinux_2_28_x86_64.AppImage
-        wget https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
-
+        wget -q https://github.com/ryuuzaki42/Python_to_make_AppImage/releases/download/06/python3.13.3-cp313-cp313-manylinux2014_x86_64.AppImage
         fileName=$(ls python3*.AppImage)
         chmod +x "$fileName"
         ./"$fileName" --appimage-extract
-        ls -lah
+        pwd; ls -lah
 
     - name: Install Syncplay and update pip
       run: |
@@ -48,7 +47,7 @@ jobs:
         cd squashfs-root/opt/python3*/bin/
         pwd; ls -lah
 
-        wget https://github.com/Syncplay/syncplay/archive/refs/tags/v${version}.tar.gz
+        wget -q https://github.com/Syncplay/syncplay/archive/refs/tags/v${version}.tar.gz
         tar -xvf v${version}.tar.gz
         cd syncplay-${version}/
 
@@ -82,45 +81,42 @@ jobs:
 
         #find . | grep ".png"
         #find . | grep ".svg"
-        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png ./../../../
+        ln -s syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png ./../../../
 
         #find . | grep ".desktop"
-        cp syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop ./../../../
+        ln -s syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop ./../../../Syncplay.desktop
 
-        pwd; ls -lah
         cd ../../../
+        pwd; ls -lah
         cat syncplay.desktop
 
         #sed -i "s/Name=Syncplay/Name=Syncplay-$version/" syncplay.desktop
-        mv syncplay.desktop Syncplay.desktop
-        cat Syncplay.desktop
-
-        cd ../
-        pwd; ls -lah
+        #mv syncplay.desktop Syncplay.desktop
+        #cat Syncplay.desktop
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
-        echo "HERE: $HERE"
+        #echo "HERE: $HERE"
 
         cd "$HERE"/opt/python3*/bin/
-        ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"'> squashfs-root/AppRun
-        chmod +x squashfs-root/AppRun
+        ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"' > AppRun
+        chmod +x AppRun
 
-        mv README.md squashfs-root/
+        cd ../
+        cp README.md squashfs-root/
         ls -lah squashfs-root/
 
         # Wrong permissions on AppDir, please set it to 0755 and try again
         chmod 0755 squashfs-root/
 
         ARCH=x86_64 VERSION="${version}-1_JB" ./appimagetool-x86_64.AppImage squashfs-root/
-        ls -lah
+        pwd; ls -lah
 
         fileName=$(ls Syncplay*.AppImage)
         echo "fileName: $fileName"
         md5sum "$fileName" > "${fileName}.md5"
-        ls -lah
-
-    # https://github.com/marketplace/actions/upload-to-github-release
+        pwd; ls -lah
+        
     - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
