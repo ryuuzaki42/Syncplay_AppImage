@@ -78,22 +78,13 @@ jobs:
 
         rm -v python*.png python*.desktop .DirIcon AppRun
 
-        #cd opt/python3*/bin/
-
         #find . | grep ".png"
         #find . | grep ".svg"
         ln -s opt/python3*/bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.png . #./../../../
 
         #find . | grep ".desktop"
         ln -s opt/python3*/bin/syncplay/usr/lib/syncplay/syncplay/resources/syncplay.desktop Syncplay.desktop #./../../../Syncplay.desktop
-
-        #cd ../../../
-        pwd; ls -lah
         cat Syncplay.desktop
-
-        #sed -i "s/Name=Syncplay/Name=Syncplay-$version/" syncplay.desktop
-        #mv syncplay.desktop Syncplay.desktop
-        #cat Syncplay.desktop
 
         echo '#!/bin/bash
         HERE="$(dirname "$(readlink -f "${0}")")"
@@ -103,6 +94,7 @@ jobs:
         ./python3.* syncplay/usr/lib/syncplay/syncplayClient.py "$@"' > AppRun
         chmod +x AppRun
 
+        pwd; ls -lah
         cd ../
         cp README.md squashfs-root/
         ls -lah squashfs-root/
