@@ -61,7 +61,7 @@ jobs:
         ../pip3.* install idna
         ../pip3.* install pem
 
-        #make DESTDIR=../syncplay/ install
+        make DESTDIR=../syncplay/ install
 
         ../pip3.* install -r requirements.txt --upgrade
 
@@ -70,7 +70,7 @@ jobs:
 
         ../pip3.* install -r requirements_gui.txt --upgrade
 
-        make DESTDIR=../syncplay/ install
+        #make DESTDIR=../syncplay/ install
         cd ../
         rm -r syncplay-${version} v${version}.tar.gz
 
