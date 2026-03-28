@@ -53,8 +53,15 @@ jobs:
 
         ../pip3.* install --upgrade pip
 
-        # Install pyside2
-        ../pip3.* install pyside2
+        ../pip3.* install twisted
+        ../pip3.* install PySide2
+        ../pip3.* install certifi
+        ../pip3.* install pyopenssl
+        ../pip3.* install service_identity
+        ../pip3.* install idna
+        ../pip3.* install pem
+
+        #make DESTDIR=../syncplay/ install
 
         ../pip3.* install -r requirements.txt --upgrade
 
@@ -109,7 +116,7 @@ jobs:
         echo "fileName: $fileName"
         md5sum "$fileName" > "${fileName}.md5"
         pwd; ls -lah
-        
+
     - uses: xresloader/upload-to-github-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
