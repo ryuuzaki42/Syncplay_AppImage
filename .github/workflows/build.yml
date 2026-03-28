@@ -53,13 +53,13 @@ jobs:
 
         ../pip3.* install --upgrade pip
 
-        # Install pyside2 and
-        ../pip3.* install pyside2 pyside2.qtwidgets
+        # Install pyside2
+        ../pip3.* install pyside2
 
         ../pip3.* install -r requirements.txt --upgrade
 
         # Change pyside6 to PySide6-Essentials to reduce AppImage size
-        sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
+        #sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
 
         ../pip3.* install -r requirements_gui.txt --upgrade
 
