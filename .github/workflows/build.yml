@@ -62,24 +62,24 @@ jobs:
 
         ../../../../../conty.sh ldd --version
 
-        ../pip3.* install --upgrade pip
+        ../../../../../conty.sh ../pip3.* install --upgrade pip
 
-        ../pip3.* install twisted
-        ../pip3.* install PySide2
-        ../pip3.* install certifi
-        ../pip3.* install pyopenssl
-        ../pip3.* install service_identity
-        ../pip3.* install idna
-        ../pip3.* install pem
+        #../pip3.* install twisted
+        #../pip3.* install PySide2
+        #../pip3.* install certifi
+        #../pip3.* install pyopenssl
+        #../pip3.* install service_identity
+        #../pip3.* install idna
+        #../pip3.* install pem
 
         ../../../../../conty.sh make DESTDIR=../syncplay/ install
 
-        ../pip3.* install -r requirements.txt --upgrade
+        ../../../../../conty.sh ../pip3.* install -r requirements.txt --upgrade
 
         # Change pyside6 to PySide6-Essentials to reduce AppImage size
-        #sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
+        sed -i 's/pyside6/PySide6-Essentials/g' requirements_gui.txt
 
-        ../pip3.* install -r requirements_gui.txt --upgrade
+        ../../../../../conty.sh ../pip3.* install -r requirements_gui.txt --upgrade
 
         #make DESTDIR=../syncplay/ install
         cd ../
