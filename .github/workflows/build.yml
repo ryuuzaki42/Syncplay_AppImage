@@ -60,6 +60,8 @@ jobs:
         tar -xvf v${version}.tar.gz
         cd syncplay-${version}/
 
+        ../../../../conty.sh ldd --version
+
         ../pip3.* install --upgrade pip
 
         ../pip3.* install twisted
@@ -70,7 +72,7 @@ jobs:
         ../pip3.* install idna
         ../pip3.* install pem
 
-        make DESTDIR=../syncplay/ install
+        ../../../../conty.sh make DESTDIR=../syncplay/ install
 
         ../pip3.* install -r requirements.txt --upgrade
 
