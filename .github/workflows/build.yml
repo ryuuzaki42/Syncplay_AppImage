@@ -75,6 +75,13 @@ jobs:
         cd ../
         rm -r syncplay-${version} v${version}.tar.gz
 
+        # Add libxcb-cursor from Ubuntu
+        pwd; ls -lah
+        cd ../../../usr/lib/
+        wget -q https://github.com/ryuuzaki42/Calibre_AppImage/releases/download/main-00000000/libxcb-cursor.so.0.0.0
+        ln -s libxcb-cursor.so.0.0.0 libxcb-cursor.so.0
+        pwd; ls -lah
+
     - name: Make AppImage
       run: |
         set -x
