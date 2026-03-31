@@ -1,7 +1,7 @@
 
 # Syncplay_AppImage
 
-Syncplay synchronises video playback across multiple media players so that a group of people who all have the same videos can watch them together.
+Syncplay synchronises video playback across multiple media players so that a group of people who all have the same videos can watch them together
 
 https://syncplay.pl/
 
