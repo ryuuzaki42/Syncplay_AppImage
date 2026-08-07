@@ -6,7 +6,7 @@ Syncplay synchronises video playback across multiple media players so that a gro
 https://syncplay.pl/
 
 ## Repository: https://github.com/ryuuzaki42/Syncplay_AppImage
-    Syncplay: 1.7.5
+    Syncplay: 1.7.6
 
 ---
 NOTICE: Syncplay has discontinued support for AppImage and Snap
