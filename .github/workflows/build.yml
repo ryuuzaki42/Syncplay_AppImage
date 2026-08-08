@@ -86,7 +86,7 @@ jobs:
         set -x
         version=$(grep -o "Syncplay:.*" README.md | cut -d ' ' -f2)
         echo "Syncplay version: $version"
-        tag=2 #1
+        tag=1 #1
 
         cd squashfs-root/
         rm -v python*.png python*.desktop .DirIcon AppRun
